@@ -1,6 +1,6 @@
-import revertByWorld from '../../code/string/557';
+import revertByWorld from '../../code/string/557'
 
 test('Let\'s take LeetCode contest', () => {
-    expect(revertByWorld('Let\'s take LeetCode contest'))
-        .toBe('s\'teL ekat edoCteeL tsetnoc')
-});
+  expect(revertByWorld('Let\'s take LeetCode contest'))
+    .toBe('s\'teL ekat edoCteeL tsetnoc')
+})
