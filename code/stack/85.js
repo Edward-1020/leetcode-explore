@@ -6,7 +6,7 @@ export default (arr) => {
     let r = reg.exec(str)
     let rs = []
     while (r) {
-      rs.push([r.index, r[0].length] - 1)
+      rs.push([r.index, r.index + r[0].length - 1])
       r = reg.exec(str)
     }
     return rs
@@ -14,10 +14,10 @@ export default (arr) => {
   let maxRect = (arr, result, n = 1) => {
     let top = arr.pop()
     let next = arr.pop()
-    let tt = null
-    let nn = null
-    let start = null
-    let end = null
+    let tt
+    let nn
+    let start
+    let end
     let width = 1
     let maxWidth = 1
     n++
@@ -26,14 +26,14 @@ export default (arr) => {
       for (let j = 0, jl = next.length; j < jl; j++) {
         nn = next[j]
         width = Math.min(tt[1], nn[1]) - Math.max(tt[0], nn[0])
-        if (width > maxWidth) {
+        if (width >= maxWidth) {
           maxWidth = width
           start = Math.max(tt[0], nn[0])
           end = Math.min(tt[1], nn[1])
         }
       }
     }
-    if (start === null || end === null) {
+    if (start === undefined || end === undefined) {
       if (n < 3) {
         return false
       } else {
@@ -43,8 +43,14 @@ export default (arr) => {
         }
       }
     } else {
-      arr.push([start, end])
-      maxRect(arr, result)
+      if (arr.length > 0) {
+        arr.push([
+          [start, end]
+        ])
+        maxRect(arr, result, n++)
+      } else {
+        result.push(n * (end - start + 1))
+      }
     }
   }
   while (arr.length > 1) {
