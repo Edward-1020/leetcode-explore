@@ -18,4 +18,5 @@ export default (arr, m, n) => {
       return dp(m - 1, n) + dp(m, n - 1)
     }
   }
+  return dp(m, n)
 }
