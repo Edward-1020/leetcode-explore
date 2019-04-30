@@ -1,5 +1,7 @@
 export default (str) => {
+  if (str.length < 1) return []
   let map = ['', 1, 'abc', 'def', 'ghi', 'jkl', 'mno', 'pqrs', 'tuv', 'wxyz']
+  if (str.length < 2) return map[str].split('')
   let num = str.split('')
   let code = []
   num.forEach(item => {
